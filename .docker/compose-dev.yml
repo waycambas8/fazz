@@ -1,51 +1,51 @@
-version: '3.1'
+version: "3.1"
 
 services:
   app:
     container_name: bri
     build:
-        context: ../
-        dockerfile: .docker/Dockerfile
-    image: satellite-bri
+      context: ../
+      dockerfile: .docker/Dockerfile
+    image: satellite-fazz
     networks:
-        - enetpulse
+      - fazz
     volumes:
-        - ../:/usr/share/app
-        - ./config/php.ini/upload.ini:/usr/local/etc/php/conf.d/upload.ini
+      - ../:/usr/share/app
+      - ./config/php.ini/upload.ini:/usr/local/etc/php/conf.d/upload.ini
     environment:
-        - ENVIRONMENT=development
+      - ENVIRONMENT=development
   nginx:
     container_name: bri-nginx
     image: nginx
     env_file:
-        - ../.env
+      - ../.env
     restart: always
     networks:
-        - enetpulse
+      - fazz
     links:
-        - app
+      - app
     depends_on:
-        - app
+      - app
     ports:
-        - "80:80"
-        - "443:443"
+      - "80:80"
+      - "443:443"
     volumes:
-        - ./etc/nginx/nginx.conf:/etc/nginx/nginx.conf
-        - ./etc/nginx/conf.d:/etc/nginx/conf.d
-        - ./etc/nginx/servers:/etc/nginx/servers
-        - ./keys/nginx:/keys
-        - ../:/usr/share/app
+      - ./etc/nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./etc/nginx/conf.d:/etc/nginx/conf.d
+      - ./etc/nginx/servers:/etc/nginx/servers
+      - ./keys/nginx:/keys
+      - ../:/usr/share/app
 
   db:
     container_name: db
     image: postgres
     ports:
-        - ${POSTGRES_PORT}:5432
+      - ${POSTGRES_PORT}:5432
     env_file:
-        - ./.env
+      - ./.env
     volumes:
-        - ./data/postgres:/var/lib/postgresql/data
-    networks: 
-        - enetpulse
+      - ./data/postgres:/var/lib/postgresql/data
+    networks:
+      - fazz
 networks:
-  enetpulse: {}
+  fazz: {}
