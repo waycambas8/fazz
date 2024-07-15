@@ -107,5 +107,6 @@ return [
     */
 
     'password_timeout' => 10800,
-
+    'bri_client' => (env('APP_ENV') === 'production') ? env('FAZZ_CLIENT') : env('FAZZ_CLIENT_DEV'),
+    'bri_client_secret' => (env('APP_ENV') === 'production') ? env('FAZZ_CLIENT_SECRET') : env('FAZZ_CLIENT_SECRET_DEV')
 ];
