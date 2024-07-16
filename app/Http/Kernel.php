@@ -2,6 +2,7 @@
 
 namespace App\Http;
 
+use App\Http\Middleware\Method\StaticVirtualAccount;
 use App\Http\Middleware\Payment\Retail;
 use App\Http\Middleware\Payment\VirtualAccount;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
@@ -68,5 +69,6 @@ class Kernel extends HttpKernel
 
         'Create.Retail' => Retail::class,
         'Create.Va' => VirtualAccount::class,
+        'Create.Static.Va' => StaticVirtualAccount::class,
     ];
 }

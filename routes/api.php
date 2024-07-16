@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Method\MethodBrowseController;
+use App\Http\Controllers\Method\MethodController;
 use App\Http\Controllers\Payment\PaymentBrowseController;
 use App\Http\Controllers\Payment\PaymentController;
 use Illuminate\Http\Request;
@@ -37,5 +38,11 @@ Route::prefix('payment')->group(function () {
 
     Route::get('va', [PaymentController::class, 'VirtualAccount'])->middleware([
         'Create.Va'
+    ]);
+});
+
+Route::prefix('method')->group(function () {
+    Route::get('static/va', [MethodController::class, 'StaticVirtualAccount'])->middleware([
+        'Create.Static.Va'
     ]);
 });
