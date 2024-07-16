@@ -89,7 +89,8 @@ class ConnectServer
         $Header = [];
         if ($Auth) {
             $Header = [
-                'accept' => 'application/json',
+                'accept' => 'application/vnd.api+json',
+                'Content-Type' => 'application/vnd.api+json',
                 'Authorization' => 'Basic ' . base64_encode(\config('auth.bri_client') . ':' . \config('auth.bri_client_secret'))
             ];
         } else {
@@ -106,6 +107,8 @@ class ConnectServer
             ];
 
             //dump($this->Authorization, $Config);
+
+            //dd($Type, $Service->pluck('endpoint')->first() . $Path, $Config);
             $Client = new Client();
             $Response = $Client->request($Type, $Service->pluck('endpoint')->first() . $Path, $Config);
             $Data = json_decode($Response->getBody()->getContents(), true);

@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\Method\MethodBrowseController;
+use App\Http\Controllers\Payment\PaymentBrowseController;
+use App\Http\Controllers\Payment\PaymentController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -20,4 +23,19 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::get('', function () {
     return 'Beep Beep server is Online';
+});
+
+Route::get('list/payment', [PaymentBrowseController::class, 'List']);
+Route::get('list/payment/method', [MethodBrowseController::class, 'List']);
+Route::get('list/payment/method/{uuid}', [MethodBrowseController::class, 'Detail']);
+
+
+Route::prefix('payment')->group(function () {
+    Route::get('retail', [PaymentController::class, 'Retail'])->middleware([
+        'Create.Retail'
+    ]);
+
+    Route::get('va', [PaymentController::class, 'VirtualAccount'])->middleware([
+        'Create.Va'
+    ]);
 });
