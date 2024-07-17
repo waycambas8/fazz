@@ -14,7 +14,6 @@ services:
       - ./config/php.ini/upload.ini:/usr/local/etc/php/conf.d/upload.ini
     environment:
       - ENVIRONMENT=development
-    command: sh "composer install --ignore-platform-reqs && php artisan key:generate"
 
   nginx:
     container_name: bri-nginx
@@ -37,6 +36,7 @@ services:
       - ./etc/nginx/servers:/etc/nginx/servers
       - ./keys/nginx:/keys
       - ../:/usr/share/app
+    command: sh "composer install --ignore-platform-reqs && php artisan key:generate"
 
   db:
     container_name: db
