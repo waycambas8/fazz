@@ -41,6 +41,7 @@ Route::prefix('payment')->group(function () {
     ]);
 });
 
+
 Route::prefix('method')->group(function () {
     Route::get('static/va', [MethodController::class, 'StaticVirtualAccount'])->middleware([
         'Create.Static.Va'
