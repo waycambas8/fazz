@@ -23,7 +23,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::get('', function () {
-    return 'Beep Beep server is Online';
+    return 'Beep Beep server is Onlines';
 });
 
 Route::get('list/payment', [PaymentBrowseController::class, 'List']);
@@ -40,7 +40,6 @@ Route::prefix('payment')->group(function () {
         'Create.Va'
     ]);
 });
-
 
 Route::prefix('method')->group(function () {
     Route::get('static/va', [MethodController::class, 'StaticVirtualAccount'])->middleware([
