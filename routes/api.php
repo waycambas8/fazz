@@ -23,7 +23,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::get('', function () {
-    return 'Beep Beep server is Onlines';
+    return 'Beep Beep server is Onlinesss';
 });
 
 Route::get('list/payment', [PaymentBrowseController::class, 'List']);
